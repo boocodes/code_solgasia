@@ -15,3 +15,4 @@ ReactDOM.render(
 
 
 export * from './pages';
+export * from './components';
