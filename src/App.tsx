@@ -1,7 +1,5 @@
 import styled from "styled-components";
-import {
-  HomePage
-} from './'
+import { MainPage } from './'
 
   
 
@@ -10,7 +8,7 @@ interface Props{
 }
 
 function App(props:Props) {
-  return(<HomePage/>)
+  return(<MainPage/>);
             
 }
 
