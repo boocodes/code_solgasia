@@ -1,7 +1,7 @@
 <?php
 include_once "../../config/database.php";
-include once "../../config/app_pages_links.php";
-header('Content-Type: text/html; charset=utf-8');
+include_once "../../config/app_pages_links.php";
+
 
 
 $database = new DataBase();
