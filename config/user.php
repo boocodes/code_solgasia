@@ -123,6 +123,15 @@ class User
     }
     public function registrate_user()
     {
-        
+        $query = "INSERT INTO `" . $this->table_name . "` (`firstname`, `middlename`, `lastname`, `user_photo`, `id`, `created_at`, `updated_at`, `password`, `login`, `email`) VALUES ('" . $this->firstname . "', '" . $this->middlename . "', '" . $this->lastname . "', 'user_profile_icon.png', NULL, CURRENT_TIMESTAMP, CURRENT_TIME(), '" . $this->password . "', '" . $this->login . "', '" . $this->email . "');";
+        $stmt = $this->connection->prepare($query);
+        if($stmt->execute())
+        {
+            return true;
+        }
+        else
+        {
+            return false;
+        }
     }
 }
