@@ -61,6 +61,9 @@ class searchFieldSugguest
     
     public function get_sugguest_by_empty_search()
     {
+        $query = "SET names utf8";
+        $stmt = $this->connection->prepare($query);
+        $stmt->execute();
         $query = "SELECT * FROM `" . $this->table_name . "` WHERE empty_text = '1'";
         $stmt = $this->connection->prepare($query);
         $stmt->execute();
