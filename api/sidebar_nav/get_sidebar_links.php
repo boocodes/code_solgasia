@@ -19,7 +19,3 @@ if(!empty($result))
     echo json_encode(array("message"=>$result), JSON_UNESCAPED_UNICODE);
     http_response_code(200);
 }
-else
-{
-   
-}

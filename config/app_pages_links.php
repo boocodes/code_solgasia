@@ -94,6 +94,6 @@ class appPagesLinks
                 array_push($result, $result_item);
             }
         }
-        echo json_encode($result);
+        echo json_encode($result, JSON_UNESCAPED_UNICODE);
     }
 }
