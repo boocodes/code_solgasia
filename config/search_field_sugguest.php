@@ -7,7 +7,7 @@ class searchFieldSugguest
             $link,
             $icon,
             $empty_text,
-            $id,
+            $id;
     
     public function set_connection($db)
     {
