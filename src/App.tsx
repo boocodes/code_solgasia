@@ -14,6 +14,10 @@ function App(props:Props) {
   return(
     <Routes>
     <Route
+      path="/"
+      element={<Navigate to={"/main"}/>}
+    />
+    <Route
       path="/main"
       element={<MainPage component={<InDevelopmentPage/>}/>}
     />
