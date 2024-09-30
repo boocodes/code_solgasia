@@ -77,7 +77,7 @@ class appPagesLinks
 
         $result_data_count = $stmt->rowCount();
         $result = array();
-        if($commit_cout > 0)
+        if($result_data_count > 0)
         {
             while($row = $stmt->fetch(PDO::FETCH_ASSOC))
             {
