@@ -62,6 +62,16 @@ class searchFieldSugguest
     public function get_sugguest_by_empty_search()
     {
         $query = "SELECT * FROM `" . $this->table_name . "` WHERE empty_text = '1'";
+        $stmt = $this->connection->prepare($query);
+        $result = $stmt->execute();
+        if(!empty($result))
+        {
+            return $result;
+        }
+        else
+        {
+            return;
+        }
     }
 
 
