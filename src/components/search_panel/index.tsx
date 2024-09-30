@@ -1,22 +1,88 @@
+import { useRef, useState } from "react";
+import { useNavigate } from "react-router-dom";
 import styled from "styled-components";
 
 interface IProps
 {
 
 }
+interface ISearchResults
+{
+    title: string;
+    link: string;
+    icon: string;
+    id: number;
+    empty_text: number;
+}
 
 function SearchPanelComponent(props:IProps)
 {
+    const navigate = useNavigate();
+    const searchInputRef = useRef<HTMLInputElement>(null);
+    const [searchResults, setSearchResults] = useState<ISearchResults[]>([]);
+    const [searchModelViewFlag, setSearchModelViewFlag] = useState<boolean>(false);
+
+    function getSearchResult()
+    {
+    
+        if(!searchModelViewFlag) setSearchModelViewFlag(true);
+        console.log(searchInputRef.current?.value)
+        if(searchInputRef.current?.value.length == 0)
+        {
+            fetch('https://arhicult.ru/api/search_field/get_sugguest_result.php', 
+                {
+                    method: 'GET',
+                    mode: 'cors',
+                } 
+            )
+                .then((response)=> {
+                    return response.json();
+                })
+                .then((data)=>{
+                    setSearchResults(data);
+                })
+        }
+        else
+        {
+
+        }
+    }
+
+
     return (
         <ExternalWrapper>
             <SearchForm>
                 <SearchIcon src="./images/search_icon.png"/>
-                <SearchInput placeholder="Поиск"/>
+                <SearchInput ref={searchInputRef} onFocus={getSearchResult} onChange={getSearchResult} placeholder="Поиск"/>
                 <SearchButton>Искать</SearchButton>
             </SearchForm>
-            <SearchResultWrapper>
-                <NotFoundText>Ничего не найдено</NotFoundText>
-            </SearchResultWrapper>
+            {searchModelViewFlag ?
+                <>
+                    <SearchResultOverlay onClick={()=>setSearchModelViewFlag(false)}/>
+                    <SearchResultWrapper>
+                        {
+                            searchResults.length == 0 ?
+                            <>
+                                <NotFoundText>Ничего не найдено</NotFoundText>
+                            </>
+                            :
+                            <>
+                            {
+                                    searchResults.map((elem:ISearchResults)=>{
+                                        return (
+                                            <SearchResultElemWrapper onClick={()=>navigate(elem.link)}>
+                                                <SearchResultElemLink>{elem.title}</SearchResultElemLink>
+                                            </SearchResultElemWrapper>
+                                        )
+                                    })
+                                }
+                            </>
+                        }
+                    </SearchResultWrapper>  
+                </>
+            :
+            null
+            }
         </ExternalWrapper>
     )
 }
@@ -72,11 +138,37 @@ const SearchResultWrapper = styled.div`
     position: absolute;
     top: 50px;
     border-radius: 5px;
-    padding: 20px 0px 20px 30px;
+    padding: 20px 30px 20px 30px;
+    z-index: 3;
 `
 const NotFoundText = styled.p`
 
 `
+const SearchResultElemWrapper = styled.div`
+    margin-bottom: 15px;
+    :hover{
+        background-color: #233047;
+        color: white;
+    }
+    position: relative;
+    cursor: pointer;
+    padding: 10px 0px 10px 30px;
+    border-radius: 5px;
+`
+const SearchResultElemIcon = styled.img`
 
+`
+const SearchResultElemLink = styled.p`
+
+`
+const SearchResultOverlay = styled.div`
+    position: fixed;
+    width: 100%;
+    height: 100%;
+    top: 0;
+    left: 0;
+    z-index: 2;
+
+`
 
 export default SearchPanelComponent;

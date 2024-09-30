@@ -1,8 +1,17 @@
 import styled from "styled-components";
 import {
     HeaderComponent,
-    NavBarComponent
+    NavBarComponent,
+    PortalManageBlock,
+    InDevelopmentPage
 } from '../../';
+import {
+    Route,
+    Routes,
+    Navigate,
+} from 'react-router-dom';
+import ProjectsReestr from "../projects_reestr";
+import { useState } from "react";
 
 interface IProps
 {
@@ -12,11 +21,43 @@ interface IProps
 
 function MainPage(props:IProps)
 {
+
+    const [hideControlBlocksFlag, setControlBlocksFlag] = useState<boolean>(false);
+    function changeControllBlocksFlag (flag:boolean)
+    {
+        setControlBlocksFlag(flag);
+    }
     return(
         <ExternalWrapper>
-            <NavBarComponent/>
+            <NavBarComponent changeControlBlocksFlag={changeControllBlocksFlag} hideControlBlocksFlag={hideControlBlocksFlag}/>
             <ContentWrapper>
-                <HeaderComponent/>
+                <HeaderComponent changeControlBlocksFlag={changeControllBlocksFlag} hideControlBlocksFlag={hideControlBlocksFlag}/>
+                <Routes>
+                    <Route
+                        path="/"
+                        element={<Navigate to={"/main"}/>}
+                    />
+                    <Route
+                        path="/main"
+                        element={<InDevelopmentPage/>}  
+                    />
+                    <Route
+                        path="/portal_manage"
+                        element={<PortalManageBlock/>}  
+                    />
+                    <Route
+                        path="/reestr_project"
+                        element={<ProjectsReestr/>}  
+                    />
+                    <Route
+                        path="/library"
+                        element={<InDevelopmentPage/>}  
+                    />
+                    <Route
+                        path="/monitoring"
+                        element={<InDevelopmentPage/>}  
+                    />
+                </Routes>
             </ContentWrapper>
             
         </ExternalWrapper>

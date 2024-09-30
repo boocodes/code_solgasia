@@ -1,0 +1,1 @@
+export {default as getLastUrlPath} from './get_last_url_path';

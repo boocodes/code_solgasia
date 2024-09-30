@@ -2,16 +2,25 @@ import styled from "styled-components";
 import {
     SearchPanelComponent
 }   from '../../';
+import { useEffect, useState } from "react";
 
 interface IProps
+{
+    changeControlBlocksFlag: (flag:boolean) => void;
+    hideControlBlocksFlag: boolean;
+}
+interface ISettingsLinks
 {
 
 }
 
 
-
 function HeaderComponent(props:IProps)
 {
+    const [settingsLinks, setSettingsLinks] = useState<ISettingsLinks[]>([]);
+
+   
+
     return (
         <ExternalWrapper>
             <SearchWrapper>

@@ -1,5 +1,7 @@
 import styled from "styled-components";
-import { MainPage } from './'
+import { getLastUrlPath, InDevelopmentPage, MainPage } from './'
+import { Navigate, Route, Routes } from "react-router-dom";
+import ProjectsReestr from "./pages/projects_reestr";
 
   
 
@@ -8,8 +10,9 @@ interface Props{
 }
 
 function App(props:Props) {
-  return(<MainPage/>);
-            
+  return(
+    <MainPage/>
+  ) 
 }
 
  

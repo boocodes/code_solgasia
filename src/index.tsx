@@ -2,17 +2,23 @@ import React from 'react';
 import ReactDOM from 'react-dom';
 import './index.css';
 import App from './App';
+import { BrowserRouter, Router } from 'react-router-dom';
 
 
 
 
 
 ReactDOM.render(
-  <App/>
+  <BrowserRouter>
+    <App/>
+  </BrowserRouter>
+  
+  
   ,
   document.getElementById('root')
 );
 
 
 export * from './pages';
+export * from './utils';
 export * from './components';
