@@ -61,21 +61,29 @@ class searchFieldSugguest
     
     public function get_sugguest_by_empty_search()
     {
-        $query = "SET names utf8";
-        $stmt = $this->connection->prepare($query);
-        $stmt->execute();
+        
         $query = "SELECT * FROM `" . $this->table_name . "` WHERE empty_text = '1'";
         $stmt = $this->connection->prepare($query);
         $stmt->execute();
-        $result = $stmt->fetch(PDO::FETCH_ASSOC);
-        if(!empty($result))
+        $result_data_count = $stmt->rowCount();
+        $result = array();
+        if($result_data_count > 0)
         {
-            return $result;
+            while($row = $stmt->fetch(PDO::FETCH_ASSOC))
+            {
+                extract($row);
+                $result_item = array(
+                    "title" => $title,
+                    "link" => $link,
+                    "icon" => $icon,
+                    "id" => $id,
+                    "empty_text" => $empty_text,
+                );
+                array_push($result, $result_item);
+            }
         }
-        else
-        {
-            return;
-        }
+        echo json_encode($result, JSON_UNESCAPED_UNICODE);
+        
     }
 
 
