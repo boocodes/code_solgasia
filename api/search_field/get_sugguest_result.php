@@ -1,6 +1,7 @@
 <?php
 include_once "../../config/database.php";
 include_once "../../config/search_field_sugguest.php";
+header('Content-Type: text/html; charset=utf-8');
 
 
 $database = new DataBase();
