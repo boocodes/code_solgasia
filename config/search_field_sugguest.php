@@ -63,7 +63,8 @@ class searchFieldSugguest
     {
         $query = "SELECT * FROM `" . $this->table_name . "` WHERE empty_text = '1'";
         $stmt = $this->connection->prepare($query);
-        $result = $stmt->execute();
+        $stmt->execute();
+        $result = $stmt->fetch(PDO::FETCH_ASSOC);
         if(!empty($result))
         {
             return $result;
