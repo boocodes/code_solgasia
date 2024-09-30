@@ -2,7 +2,11 @@
 include_once "../../config/database.php";
 include_once "../../config/app_pages_links.php";
 header('Content-Type: text/html; charset=utf-8');
-
+header("Access-Control-Allow-Origin: *");
+header("Content-Type: application/json; charset=UTF-8; multipart/form-data");
+header("Access-Control-Allow-Methods: POST");
+header("Access-Control-Max-Age: 3600");
+header("Access-Control-Allow-Headers: Content-Type, Access-Control-Allow-Headers, Authorization, X-Requested-With");
 
 $database = new DataBase();
 $db_connection = $database->set_connection();
