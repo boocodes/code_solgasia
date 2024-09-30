@@ -21,6 +21,5 @@ if(!empty($result))
 }
 else
 {
-    echo json_encode(array("message"=>"Error occured"), JSON_UNESCAPED_UNICODE);
-    http_response_code(400);
+   
 }

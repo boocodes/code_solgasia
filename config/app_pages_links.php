@@ -70,6 +70,7 @@ class appPagesLinks
 
     public function get_all_sidebar_nav_links()
     {
+        
         $query = "SELECT * FROM `" . $this->table_name . "` WHERE at_nav_bar_display = '1'";
         $stmt = $this->connection->prepare($query);
         $stmt->execute();
