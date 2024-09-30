@@ -113,7 +113,7 @@ class User
         $result = $stmt->fetch(PDO::FETCH_ASSOC);
         if(!empty($result))
         {
-            return $row;
+            return $result;
         }
         else
         {
