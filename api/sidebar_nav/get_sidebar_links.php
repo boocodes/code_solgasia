@@ -1,7 +1,7 @@
 <?php
 include_once "../../config/database.php";
 include_once "../../config/app_pages_links.php";
-
+header('Content-Type: text/html; charset=utf-8');
 
 
 $database = new DataBase();
@@ -21,6 +21,6 @@ if(!empty($result))
 }
 else
 {
-    echo json_encode(array("message"=>"Error occured"));
+    echo json_encode(array("message"=>"Error occured"), JSON_UNESCAPED_UNICODE);
     http_response_code(400);
 }
