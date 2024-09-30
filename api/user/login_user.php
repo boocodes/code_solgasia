@@ -4,7 +4,7 @@ include_once "../../config/user.php";
 
 $database = new DataBase();
 $db_connection = $database->set_connection();
-
+$data = json_decode(file_get_contents('php://input'), true);
 $user = new User();
 $user->set_connection($db_connection);
 
