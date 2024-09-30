@@ -1,5 +1,5 @@
 <?php
-class searchFieldSugguest
+class User
 {
     private $connection;
     private $table_name = "admin_profiles";
@@ -105,24 +105,23 @@ class searchFieldSugguest
 
     // ------------------------------
 
-    public function login_user
-    (
-        $login, 
-        $password
-    )
+    public function login_user()
     {
+        $query = "SELECT * FROM `" . $this->table_name . "` WHERE login = '" . $this->login . "' AND password = '" . $this->password . "';";
+        $stmt = $this->connection->prepare($query);
+        $stmt->execute();
+        $result = $stmt->fetch(PDO::FETCH_ASSOC);
+        if(!empty($result))
+        {
+            return $row;
+        }
+        else
+        {
+            return false;
+        }
 
     }
-    public function registrate_user
-    (
-        $login, 
-        $password, 
-        $email, 
-        $firstname, 
-        $lastname, 
-        $middlename, 
-        $user_photo
-    )
+    public function registrate_user()
     {
         
     }
