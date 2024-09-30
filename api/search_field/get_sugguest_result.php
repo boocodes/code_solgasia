@@ -21,7 +21,7 @@ else{
     $result = $search_field_sugguest->get_sugguest_by_empty_search();
     if($result)
     {
-        echo json_encode(array("message"=>$result));
+        echo json_encode(array("message"=>$result), JSON_UNESCAPED_UNICODE);
         http_response_code(200);
         return;
     }
