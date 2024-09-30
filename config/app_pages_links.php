@@ -1,5 +1,5 @@
 <?php
-class appPagesLinks()
+class appPagesLinks
 {
     private $connection;
     private $table_name = "app_pages_links"
