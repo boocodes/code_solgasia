@@ -2,13 +2,13 @@
 class appPagesLinks
 {
     private $connection;
-    private $table_name = "app_pages_links"
+    private $table_name = "app_pages_links";
     private $text,
             $icon,
             $link,
             $link_order,
             $id,
-            $at_nav_bar_display,
+            $at_nav_bar_display;
             
     
     public function set_connection($db)
