@@ -1,13 +1,65 @@
 import styled from "styled-components";
+import { useEffect, useState } from "react";
+import {
+    getLastUrlPath
+} from '../../';
+import { useNavigate } from "react-router-dom";
+
 
 interface IProps
 {
-
+    changeControlBlocksFlag: (flag:boolean) => void;
+    hideControlBlocksFlag: boolean;
 }
 
+interface INavBarLinks
+{
+    text: string;
+    icon: string;
+    link: string;
+    link_order: number;
+    id: number;
+    at_nav_bar_display: number;
+}
+interface IUserData
+{
+    firstname: string;
+    lastname: string;
+    middlename: string;
+    user_photo: string;
+    id: number;
+    created_at: string;
+    updated_at: string;
+    login: string;
+    email: string;
+}
 
 function NavBarComponent(props:IProps)
 {
+    function onClickNavBarLink(elem_link: string)
+    {
+        props.changeControlBlocksFlag(true);
+        navigate(elem_link);
+    }
+    const hideblockByClickOnLink = ['reestr_project'];
+
+    const [navBarLinks, setNavBarLinks] = useState<INavBarLinks[]>([]);
+    const [userData, setUserData] = useState<IUserData>();
+    const navigate = useNavigate();
+    useEffect(()=>{
+        fetch('https://arhicult.ru/api/sidebar_nav/get_sidebar_links.php/', 
+            {
+                method: 'GET',
+                mode: 'cors',
+            } 
+        )
+            .then((response)=> {
+                return response.json();
+            })
+            .then((data)=>{
+                setNavBarLinks(data);
+            })
+    }, [])
     return(
         <ExternalWrapper>
             <LogoWrapper>
@@ -15,32 +67,33 @@ function NavBarComponent(props:IProps)
             </LogoWrapper>
             <UnderlogoLine/>
             <NavigationButtonsWrapper>
-                <NavigationButtonsElemWrapper>
-                    <NavigationButtonElemIcon src= "./images/main_nav_icon.png"/>
-                    <NavigationButtonElemText clicked={true}>Главная</NavigationButtonElemText>
-                </NavigationButtonsElemWrapper>
-                <NavigationButtonsElemWrapper>
-                    <NavigationButtonElemIcon src="./images/reestr_nav_icon.png" />
-                    <NavigationButtonElemText>Реестр проектов</NavigationButtonElemText>
-                </NavigationButtonsElemWrapper>
-                <NavigationButtonsElemWrapper>
-                    <NavigationButtonElemIcon src="./images/library_nav_icon.png" />
-                    <NavigationButtonElemText>Библиотека</NavigationButtonElemText>
-                </NavigationButtonsElemWrapper>
-                <NavigationButtonsElemWrapper>
-                    <NavigationButtonElemIcon src="./images/monitoring_nav_icon.png" />
-                    <NavigationButtonElemText>Мониторинг</NavigationButtonElemText>
-                </NavigationButtonsElemWrapper>
-                <NavigationButtonsElemWrapper>
-                    <NavigationButtonElemIcon src="./images/control_nav_icon.png" />
-                    <NavigationButtonElemText>Управление<br/>проектом</NavigationButtonElemText>
-                </NavigationButtonsElemWrapper>
+                {navBarLinks.length == 0 ?
+                    <>
+                        <LoadingNavigationButtonsElemWrapper/>
+                        <LoadingNavigationButtonsElemWrapper/>
+                        <LoadingNavigationButtonsElemWrapper/>
+                        <LoadingNavigationButtonsElemWrapper/>
+                    </>
+                    :
+                    <>
+                        {navBarLinks.map((elem:INavBarLinks)=>{
+                            return(
+                                <NavigationButtonsElemWrapper onClick={()=>onClickNavBarLink(elem.link)}>
+                                    <NavigationButtonElemIcon src={"https://arhicult.ru/public/images/" + elem.icon}/>
+                                    {console.log("url - " + getLastUrlPath() + ", link - " + elem.link )}
+                                    <NavigationButtonElemText clicked={ getLastUrlPath() == elem.link ? true : false}>{elem.text}</NavigationButtonElemText>
+                                </NavigationButtonsElemWrapper>
+                            )
+                        })}
+                    </>
+                }
+                
             </NavigationButtonsWrapper>
             <UserProfileWrapper>
-                <UserPofileIcon src="./images/user_profile_icon.png" />
+                <UserPofileIcon src={"https://arhicult.ru/public/images/" + localStorage.getItem('user_photo')} />
                 <UserProfileTextWrapper>
-                    <UserProfileName>Иван</UserProfileName>
-                    <UserProfileLastname>Иванов</UserProfileLastname>
+                    <UserProfileName>{localStorage.getItem('user_firstname')}</UserProfileName>
+                    <UserProfileLastname>{localStorage.getItem('user_lastname')}</UserProfileLastname>
                 </UserProfileTextWrapper>
             </UserProfileWrapper>
         </ExternalWrapper>
@@ -117,6 +170,13 @@ const UserProfileName = styled.p`
 `
 const UserProfileLastname = styled.p`
 
+`
+const LoadingNavigationButtonsElemWrapper = styled.div`
+    width: 200px;
+    background-color: #BCBCBC;
+    height: 42px;
+    margin-bottom: 30px;
+    border-radius: 5px;
 `
 
 
