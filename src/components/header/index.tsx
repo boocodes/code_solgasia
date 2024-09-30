@@ -6,8 +6,7 @@ import { useEffect, useState } from "react";
 
 interface IProps
 {
-    changeControlBlocksFlag: (flag:boolean) => void;
-    hideControlBlocksFlag: boolean;
+   
 }
 interface ISettingsLinks
 {
@@ -17,7 +16,7 @@ interface ISettingsLinks
 
 function HeaderComponent(props:IProps)
 {
-    const [settingsLinks, setSettingsLinks] = useState<ISettingsLinks[]>([]);
+   
 
    
 

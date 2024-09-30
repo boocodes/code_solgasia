@@ -8,8 +8,7 @@ import { useNavigate } from "react-router-dom";
 
 interface IProps
 {
-    changeControlBlocksFlag: (flag:boolean) => void;
-    hideControlBlocksFlag: boolean;
+    
 }
 
 interface INavBarLinks
@@ -36,12 +35,7 @@ interface IUserData
 
 function NavBarComponent(props:IProps)
 {
-    function onClickNavBarLink(elem_link: string)
-    {
-        props.changeControlBlocksFlag(true);
-        navigate(elem_link);
-    }
-    const hideblockByClickOnLink = ['reestr_project'];
+    
 
     const [navBarLinks, setNavBarLinks] = useState<INavBarLinks[]>([]);
     const [userData, setUserData] = useState<IUserData>();
@@ -78,7 +72,7 @@ function NavBarComponent(props:IProps)
                     <>
                         {navBarLinks.map((elem:INavBarLinks)=>{
                             return(
-                                <NavigationButtonsElemWrapper onClick={()=>onClickNavBarLink(elem.link)}>
+                                <NavigationButtonsElemWrapper onClick={()=>navigate("/" + elem.link)}>
                                     <NavigationButtonElemIcon src={"https://arhicult.ru/public/images/" + elem.icon}/>
                                     {console.log("url - " + getLastUrlPath() + ", link - " + elem.link )}
                                     <NavigationButtonElemText clicked={ getLastUrlPath() == elem.link ? true : false}>{elem.text}</NavigationButtonElemText>
