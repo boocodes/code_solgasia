@@ -57,7 +57,7 @@ class appPagesLinks
     }
     public function set_link($link)
     {
-        $this->link = $link
+        $this->link = $link;
     }
     public function set_link_order($link_order)
     {
