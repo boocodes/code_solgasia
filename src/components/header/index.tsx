@@ -2,18 +2,11 @@ import styled from "styled-components";
 import {
     SearchPanelComponent
 }   from '../../';
-import { useEffect, useState } from "react";
 
 interface IProps
 {
    
 }
-interface ISettingsLinks
-{
-
-}
-
-
 function HeaderComponent(props:IProps)
 {
    
@@ -66,8 +59,5 @@ const ButtonElemIcon = styled.img`
     position: relative;
     width: 100%;
 `
-
-
-
 
 export default HeaderComponent;

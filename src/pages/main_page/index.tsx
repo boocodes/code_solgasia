@@ -10,7 +10,7 @@ import {
     Routes,
     Navigate,
 } from 'react-router-dom';
-import ProjectsReestr from "../projects_reestr";
+import ProjectsReestr from "../projects_reestr_page";
 import { useState } from "react";
 
 interface IProps

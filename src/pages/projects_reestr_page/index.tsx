@@ -3,6 +3,8 @@ import { useNavigate } from "react-router-dom";
 import { Interface } from "readline";
 import styled from "styled-components";
 import { ReestrProjectsMainTable } from "../../components";
+import GroupingComponent from "./grouping_component";
+import ExportComponent from './export_component';
 
 interface IProps
 {
@@ -22,6 +24,8 @@ interface INavBarLinks
 
 function ProjectsReestr(props:IProps)
 {
+    const [exportModalFlag, setExportModalFlag] = useState(false);
+    const [groupingModalFlag, setGroupingModalFlag] = useState(false);
     const navigate = useNavigate();
     const [headerNavigationButtonsData, setHeaderNavigationButtonsData] = useState<INavBarLinks[]>([]);
 
@@ -45,7 +49,7 @@ function ProjectsReestr(props:IProps)
             <InnerHeader>
                 <HeaderSemanticBlock>
                     <LogoWrapper>
-                        <LogoIcon src="https://arhicult.ru/public/images/soglasie_icon.webp"/>
+                        <LogoIcon onClick={()=>navigate("/main")} src="https://arhicult.ru/public/images/soglasie_icon.webp"/>
                     </LogoWrapper>
                     <HeaderOfferTextWrapper>
                         <HeaderOfferText>Портал<br/>Проектного Управления</HeaderOfferText>
@@ -73,7 +77,7 @@ function ProjectsReestr(props:IProps)
                     }
                 </HeaderNavigationButtonsWrapper>
             </InnerHeader>
-            <ReestrProjectsMainTable/>
+            <ReestrProjectsMainTable exportModalFlag={exportModalFlag} groupingModalFlag={groupingModalFlag} setExportModalFlag={setExportModalFlag} setGroupingModalFlag={setGroupingModalFlag} exportModal={<ExportComponent setExportModalFlag={setExportModalFlag}/>} groupingModal={<GroupingComponent setGroupingModalFlag={setGroupingModalFlag}/>}/>
         </ExternalWrapper>
     )
 }
@@ -94,7 +98,7 @@ const LogoWrapper = styled.div`
 
 `
 const LogoIcon = styled.img`
-
+    cursor: pointer;
 `
 const HeaderOfferTextWrapper = styled.div`
 

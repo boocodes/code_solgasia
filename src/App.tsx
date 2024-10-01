@@ -1,7 +1,7 @@
 import styled from "styled-components";
 import { getLastUrlPath, InDevelopmentPage, MainPage, PortalManageBlock } from './'
 import { Navigate, Route, Routes } from "react-router-dom";
-import ProjectsReestr from "./pages/projects_reestr";
+import ProjectsReestr from "./pages/projects_reestr_page";
 
 
   

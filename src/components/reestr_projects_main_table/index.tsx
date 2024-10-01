@@ -1,13 +1,20 @@
+import { useState } from "react";
 import styled from "styled-components";
 
 interface IProps
 {
-
+    groupingModal: JSX.Element;
+    exportModal: JSX.Element;
+    exportModalFlag: boolean;
+    groupingModalFlag: boolean;
+    setExportModalFlag: (flag:boolean) => void;
+    setGroupingModalFlag: (flag: boolean) => void;
 }
 
 
 function ReestrProjectsMainTable(props: IProps)
 {
+    
     return (
         <ExternalWrapper>
             <HeaderFiltersWrapper>
@@ -24,8 +31,10 @@ function ReestrProjectsMainTable(props: IProps)
             </HeaderFiltersWrapper>
             <MainTableFiltersWrapper>
                 <LeftSideButtonsWrapper>
-                    <ExportButton>Эскпорт</ExportButton>
-                    <GroupButton>Группировать</GroupButton>
+                    <ExportButton onClick={()=>props.setExportModalFlag(true)}>Эскпорт</ExportButton>
+                    {props.exportModalFlag ? <>{props.exportModal}<ModalOverlay onClick={()=>{props.setExportModalFlag(false); props.setGroupingModalFlag(false)}}/></> : null}
+                    <GroupButton onClick={()=>props.setGroupingModalFlag(true)}>Группировать</GroupButton>
+                    {props.groupingModalFlag ? <>{props.groupingModal}<ModalOverlay onClick={()=>{props.setExportModalFlag(false); props.setGroupingModalFlag(false)}}/></> : null}
                     <SearchByTableForm>
                         <SearchByTableLabel>Поиск: </SearchByTableLabel>
                         <SearchByTableInput/>
@@ -51,6 +60,16 @@ function ReestrProjectsMainTable(props: IProps)
 
 
 
+const ModalOverlay = styled.div`
+    position: fixed;
+    width: 100%;
+    height: 100%;
+    opacity: 0.9;
+    z-index: 3;
+    top: 0px;
+    left: 0px;
+    background-color: #F5F5F5;
+`
 
 const ExternalWrapper = styled.div`
     padding: 10px 15px;
