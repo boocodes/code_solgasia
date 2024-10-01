@@ -57,7 +57,7 @@ function NavBarComponent(props:IProps)
     return(
         <ExternalWrapper>
             <LogoWrapper>
-                <LogoIcon src="./images/soglasie_icon.webp"/>
+                <LogoIcon onClick={()=>navigate("/main")} src="./images/soglasie_icon.webp"/>
             </LogoWrapper>
             <UnderlogoLine/>
             <NavigationButtonsWrapper>
@@ -108,7 +108,7 @@ const LogoWrapper = styled.div`
     margin-bottom: 31px;
 `
 const LogoIcon = styled.img`
-
+    cursor: pointer;
 `
 const UnderlogoLine = styled.div`
     height: 2px;
