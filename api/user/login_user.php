@@ -17,9 +17,18 @@ if(!empty($data["login"]) && !empty($data["password"]))
 {
     $user->set_login($data["login"]);
     $user->set_password($data["password"]);
-    $result = $user->login_user();
-    echo json_encode(array("message"=>$result), JSON_UNESCAPED_UNICODE);
-    http_response_code(200);
+    
+    if($user->login_user())
+    {
+        echo json_encode(array("message"=>"Успешно"), JSON_UNESCAPED_UNICODE);
+        http_response_code(200);
+    }
+    else
+    {
+        echo json_encode(array("message"=>"Неверный логин или пароль"), JSON_UNESCAPED_UNICODE);
+        https_response_code(400);
+    }
+    
 }
 else
 {
