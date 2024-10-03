@@ -12,7 +12,8 @@ class User
             $updated_at,
             $password,
             $login,
-            $email;
+            $email,
+            $access_rights;
     
     public function set_connection($db)
     {
@@ -21,6 +22,10 @@ class User
     public function get_connection($db)
     {
         return $this->connection;
+    }
+    public function get_access_rights()
+    {
+        return $this->access_rights;
     }
     public function get_firstname()
     {
@@ -66,6 +71,10 @@ class User
     public function set_firstname($firstname)
     {
         $this->firstname = $firstname;
+    }
+    public function set_access_rights($access_rights)
+    {
+        $this->access_rights = $access_rights;
     }
     public function set_middlename($middlename)
     {

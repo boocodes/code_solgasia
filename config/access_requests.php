@@ -9,11 +9,21 @@ class AccessRequests
             $middlename,
             $lastname,
             $password,
-            $email;
+            $email,
+            $id,
+            $created_at;
 
     public function set_connection($connection)
     {
         $this->connection = $connection;
+    }
+    public function get_id()
+    {
+        return $this->id;
+    }
+    public function get_created_at()
+    {
+        return $this->created_at;
     }
     public function get_connection()
     {
@@ -46,6 +56,14 @@ class AccessRequests
     public function set_login($login)
     {
         $this->login = $login;
+    }
+    public function set_id($id)
+    {
+        $this->id = $id;
+    }
+    public function set_created_at($created_at)
+    {
+        $this->created_at = $created_at;
     }
     public function set_firstname($firstname)
     {
