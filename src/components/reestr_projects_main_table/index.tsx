@@ -34,7 +34,7 @@ function ReestrProjectsMainTable(props: IProps)
                     <ExportButton onClick={()=>props.setExportModalFlag(true)}>Эскпорт</ExportButton>
                     {props.exportModalFlag ? <>{props.exportModal}<ModalOverlay onClick={()=>{props.setExportModalFlag(false); props.setGroupingModalFlag(false)}}/></> : null}
                     <GroupButton onClick={()=>props.setGroupingModalFlag(true)}>Группировать</GroupButton>
-                    {props.groupingModalFlag ? <>{props.groupingModal}<ModalOverlay onClick={()=>{props.setExportModalFlag(false); props.setGroupingModalFlag(false)}}/></> : null}
+                    {props.groupingModalFlag ? <>{props.groupingModal}<ModalOverlay onClick={()=>{props.setExportModalFlag(false); props.   setGroupingModalFlag(false)}}/></> : null}
                     <SearchByTableForm>
                         <SearchByTableLabel>Поиск: </SearchByTableLabel>
                         <SearchByTableInput/>
