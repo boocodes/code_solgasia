@@ -1,3 +1,5 @@
+import { useRef, useState } from "react";
+import { useNavigate } from "react-router-dom";
 import styled from "styled-components";
 
 interface IProps
@@ -7,29 +9,79 @@ interface IProps
 
 function LoginModal(props:IProps)
 {
+    const navigate = useNavigate();
+    
+    const [errorDataFlag, setErrorDataFlag] = useState(false);
+
+    const loginInputRef = useRef<HTMLInputElement>(null);
+    const passwordInputRef = useRef<HTMLInputElement>(null);
+
+    const [loginInputState, setLoginInputState] = useState("");
+    const [passwordInputState, setPasswordInputState] = useState("");
+
+
+    function loginFunction(e: any)
+    {
+        
+        e.preventDefault();
+        if(loginInputState.trim() !== "" && passwordInputState.trim() !== "")
+        {
+            fetch('https://arhicult.ru/api/user/login_user.php/', 
+                {
+                    method: 'POST',
+                    mode: 'cors',
+                    body: JSON.stringify({
+                        password: passwordInputState,
+                        login: loginInputState,
+                    })
+                } 
+            )
+            .then((response)=> {
+                return response.json();
+            })
+            .then((data)=>{
+                if(!data.status){
+                    setErrorDataFlag(true);
+                }
+                else{
+                    localStorage.setItem("user_auth", "true");
+                    navigate("/main");
+                    props.setModalFlag(false);
+                }
+            })
+            
+        }
+    }
     return (
         <ExternalWrapper>
             <TitleWrapper>
                 <TitleText>Авторизация</TitleText>
                 <CloseIconButtonWrapper>
-                    <CloseIconButton>
+                    <CloseIconButton onClick={()=>props.setModalFlag(false)}>
                         <CloseIcon src="./images/close_icon.png"/>
                     </CloseIconButton>
                 </CloseIconButtonWrapper>
             </TitleWrapper>
-            <DataForm>
+            <DataForm onSubmit={loginFunction}>
                 <LoginInputWrapper>
                     <LoginInputLabel>Логин: </LoginInputLabel>
-                    <LoginInput type={"text"} placeholder="ivan08"/>
+                    <LoginInput onChange={()=>setLoginInputState(loginInputRef.current?.value || "")} ref={loginInputRef} type={"text"} value={loginInputState} placeholder="ivan08"/>
                 </LoginInputWrapper>
                 <PasswordInputWrapper>
                     <PasswordInputLabel>Пароль: </PasswordInputLabel>
-                    <PasswordInput type={"password"}/>
+                    <PasswordInput onChange={()=>setPasswordInputState(passwordInputRef.current?.value || "")} value={passwordInputState} ref={passwordInputRef} type={"password"}/>
                 </PasswordInputWrapper>
                 <SubmitFormInputWrapper>
-                    <SubmitFormInput type={"submit"} value={"Подтвердить"}/>
+                    <SubmitFormInput onClick={loginFunction} type={"submit"} value={"Подтвердить"}/>
                 </SubmitFormInputWrapper>
             </DataForm>
+            {errorDataFlag ?
+                <ErrorTextWrapper>
+                    <ErrorText>Ошибка. Неверный логин или пароль</ErrorText>
+                </ErrorTextWrapper>
+                :
+                null
+            }
         </ExternalWrapper>
     )
 }
@@ -43,6 +95,8 @@ const ExternalWrapper = styled.div`
     position: fixed;
     padding: 20px;
     z-index: 4;
+    height: 320px;
+    width: 322px;
 `
 const TitleWrapper = styled.div`
     display: flex;
@@ -119,6 +173,15 @@ const SubmitFormInput = styled.input`
     padding: 10px 15px;
     cursor: pointer;
     text-align: center;
+`
+const ErrorTextWrapper = styled.div`
+    position: absolute;
+    bottom: 25px;
+    font-size: 16px;
+    color: #FF4500;
+`
+const ErrorText = styled.p`
+
 `
 
 export default LoginModal;

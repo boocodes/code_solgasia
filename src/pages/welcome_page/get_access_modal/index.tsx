@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import styled from "styled-components";
 import DrawRegistrationFieldsByStep from "../draw_registration_fields";
 
@@ -7,14 +7,41 @@ interface IProps
     setModalFlag: (flag: boolean) => void;
 }
 
+interface IRegistrationFormDataFields
+{
+    firstname: string;
+    middlename: string;
+    lastname: string;
+    login: string;
+    email: string;
+    password: string;
+}
 
 function GetAccessModal(props: IProps)
 {
+    const [registrationFormDataFields, setRegistrationFormDataFields] = useState<IRegistrationFormDataFields>()
     const firstRegistrationStep = 1;
     const lastRegistrationStep = 3;
     const [registrationStep, setRegistrationStep] = useState<number>(1)
     const switchRegistrationStepsNext = () => registrationStep !== lastRegistrationStep ? setRegistrationStep(registrationStep + 1) : null;
     const switchRegistrationStepsPrev = () => registrationStep !== firstRegistrationStep ? setRegistrationStep(registrationStep - 1) : null;
+
+
+    function sumbitForm(e: any)
+    {
+        e.preventDefault();
+        {
+            fetch('https://arhicult.ru/api/user/get_access.php/', 
+                {
+                    method: 'POST',
+                    mode: 'cors',
+                    body: JSON.stringify(registrationFormDataFields)
+                } 
+            )
+        }
+        props.setModalFlag(false);
+    }
+
 
     return (
         <ExternalWrapper>
@@ -26,8 +53,8 @@ function GetAccessModal(props: IProps)
                     </CloseIconButton>
                 </CloseIconButtonWrapper>
             </TitleWrapper>
-            <DataForm>
-            <DrawRegistrationFieldsByStep registrationStep={registrationStep} setModalFlag={props.setModalFlag}/>
+            <DataForm onSubmit={sumbitForm}>
+            <DrawRegistrationFieldsByStep setRegistrationFormDataFields={setRegistrationFormDataFields} registrationStep={registrationStep} setModalFlag={props.setModalFlag}/>
             </DataForm>
             {
                 registrationStep !== firstRegistrationStep ? 

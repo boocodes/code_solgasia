@@ -1,10 +1,10 @@
-import { useState } from "react";
+import { useRef, useState } from "react";
 import styled from "styled-components";
 
 
 interface IProps
 {
-
+    setRegistrationFormDataFields: any;
     registrationStep: number;
     setModalFlag: (flag: boolean) => any;
 }
@@ -12,8 +12,39 @@ interface IProps
 
 function DrawRegistrationFieldsByStep(props: IProps)
 {
-    const [sendingDataFlag, setSendingDataFlag] = useState(false);
-    const [sendingResult, setSendingResult] = useState(false);
+    const firstnameInputRef = useRef<HTMLInputElement>(null);
+    const middlenameInputRef = useRef<HTMLInputElement>(null);
+    const lastnameInputRef = useRef<HTMLInputElement>(null);
+    const emailInputRef = useRef<HTMLInputElement>(null);
+    const loginInputRef = useRef<HTMLInputElement>(null);
+    const passwordInputRef = useRef<HTMLInputElement>(null);
+
+    const [firstnameInputState, setFirstnameInputState] = useState("");
+    const [middlenameInputState, setMiddlenameInputState] = useState("");
+    const [lastnameInputState, setLastnameInputState] = useState("");
+    const [emailInputState, setEmailInputState] = useState("");
+    const [loginInputState, setLoginInputState] = useState("");
+    const [passwordInputState, setPasswordInputState] = useState("");
+ 
+
+
+    function SumbitFormData(e: any)
+    {
+        if(firstnameInputState.trim() !== "" && middlenameInputState.trim() !== "" && lastnameInputState.trim() !== "" && emailInputState.trim() !== "" && loginInputState.trim() !== "" && passwordInputState.trim() !== "")
+        {
+            props.setRegistrationFormDataFields({
+                login: loginInputState,
+                password: passwordInputState,
+                email: emailInputState,
+                lastname: lastnameInputState,
+                middlename: middlenameInputState,
+                firstname: firstnameInputState,
+            })
+        }
+    }
+
+
+
     switch (props.registrationStep) {
         case 1:
             return (
@@ -21,16 +52,16 @@ function DrawRegistrationFieldsByStep(props: IProps)
                     <FirstnameAndLastNameInputsWrapper>
                         <FirstnameInputWrapper>
                             <FirstnameInputLabel>Имя: </FirstnameInputLabel>
-                            <FirstnameInput type={"text"} placeholder="Иван"/>
+                            <FirstnameInput value={firstnameInputState} onChange={()=>setFirstnameInputState(firstnameInputRef.current?.value || "")} ref={firstnameInputRef} type={"text"} placeholder="Иван"/>
                         </FirstnameInputWrapper>
                         <LastnameInputWrapper>
                             <LastnameInputLabel>Фамилия: </LastnameInputLabel>
-                            <LastnameInput type={"text"} placeholder="Иванов"/>
+                            <LastnameInput value={lastnameInputState} onChange={()=>setLastnameInputState(lastnameInputRef.current?.value || "")} ref={lastnameInputRef} type={"text"} placeholder="Иванов"/>
                         </LastnameInputWrapper>
                     </FirstnameAndLastNameInputsWrapper>
                     <MiddlenameInputWrapper>
                             <MiddlenameInputLabel>Отчество: </MiddlenameInputLabel>
-                            <MiddlenameInput type={"text"} placeholder="Иванович"/>
+                            <MiddlenameInput value={middlenameInputState} onChange={()=>setMiddlenameInputState(middlenameInputRef.current?.value || "")} ref={middlenameInputRef} type={"text"} placeholder="Иванович"/>
                     </MiddlenameInputWrapper>
                 </NamesInputsWrapper>
             )
@@ -39,11 +70,11 @@ function DrawRegistrationFieldsByStep(props: IProps)
                 <LoginAndEmailInputsWrapper>
                     <LoginInputWrapper>
                         <LoginInputLabel>Логин: </LoginInputLabel>
-                        <LoginInput type={"text"} placeholder="Ivanov08"/>
+                        <LoginInput value={loginInputState} onChange={()=>setLoginInputState(loginInputRef.current?.value || "")} ref={loginInputRef} type={"text"} placeholder="Ivanov08"/>
                     </LoginInputWrapper>
                     <EmailInputWrapper>
                         <EmailInputLabel>Электронная почта: </EmailInputLabel>
-                        <EmailInput type={"email"} placeholder="ivanov@mail.ru"/>
+                        <EmailInput value={emailInputState} onChange={()=>setEmailInputState(emailInputRef.current?.value || "")} ref={emailInputRef} type={"email"} placeholder="ivanov@mail.ru"/>
                     </EmailInputWrapper>
                 </LoginAndEmailInputsWrapper>
             )
@@ -51,8 +82,8 @@ function DrawRegistrationFieldsByStep(props: IProps)
             return (
                 <PasswordInputWrapper>
                     <PasswordInputLabel>Пароль: </PasswordInputLabel>
-                    <PasswordInput type={"password"} />
-                    <SubmitFormDataButton value={"Подтвердить"} type={"submit"}/>
+                    <PasswordInput value={passwordInputState} onChange={()=>setPasswordInputState(passwordInputRef.current?.value || "")} ref={passwordInputRef} type={"password"} />
+                    <SubmitFormDataButton onClick={SumbitFormData} value={"Подтвердить"} type={"submit"}/>
                 </PasswordInputWrapper>
             )
         
