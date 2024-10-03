@@ -1,5 +1,5 @@
 import styled from "styled-components";
-import { getLastUrlPath, InDevelopmentPage, MainPage, PortalManageBlock } from './'
+import { getLastUrlPath, InDevelopmentPage, MainPage, PortalManageBlock, WelcomePage } from './'
 import { Navigate, Route, Routes } from "react-router-dom";
 import ProjectsReestr from "./pages/projects_reestr_page";
 
@@ -15,7 +15,7 @@ function App(props:Props) {
     <Routes>
     <Route
       path="/"
-      element={<Navigate to={"/main"}/>}
+      element={<WelcomePage/>}
     />
     <Route
       path="/main"
@@ -36,6 +36,10 @@ function App(props:Props) {
     <Route
       path="/portal_manage"
       element={<MainPage component={<PortalManageBlock/>}/>}
+    />
+    <Route
+      path="*"
+      element={<Navigate to={"/"}/>}
     />
   </Routes>
   )

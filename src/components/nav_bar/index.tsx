@@ -57,7 +57,7 @@ function NavBarComponent(props:IProps)
     return(
         <ExternalWrapper>
             <LogoWrapper>
-                <LogoIcon onClick={()=>navigate("/main")} src="./images/soglasie_icon.webp"/>
+                <LogoIcon onClick={()=>navigate("/main")} src="https://arhicult.ru/public/images/soglasie_icon.webp"/>
             </LogoWrapper>
             <UnderlogoLine/>
             <NavigationButtonsWrapper>
