@@ -47,7 +47,7 @@ class AccessRequests
     {
         $this->login = $login;
     }
-    public function set_firstname($firsname)
+    public function set_firstname($firstname)
     {
         $this->firstname = $firstname;
     }
