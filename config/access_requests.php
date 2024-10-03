@@ -11,7 +11,14 @@ class AccessRequests
             $password,
             $email;
 
-
+    public function set_connection($connection)
+    {
+        $this->connection = $connection;
+    }
+    public function get_connection()
+    {
+        return $connection;
+    }
     public function get_login()
     {
         return $this->login;
