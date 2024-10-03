@@ -65,7 +65,7 @@ class AccessRequests
     }
     public function set_email($email)
     {
-        $this->email = $emai;
+        $this->email = $email;
     }
 
     public function registrate_new_access()
