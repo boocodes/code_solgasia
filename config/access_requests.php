@@ -43,6 +43,30 @@ class AccessRequests
     {
         return $this->email;
     }
+    public function set_login($login)
+    {
+        $this->login = $login;
+    }
+    public function set_firstname($firsname)
+    {
+        $this->firstname = $firstname;
+    }
+    public function set_middlename($middlename)
+    {
+        $this->middlename = $middlename;
+    }
+    public function set_lastname($lastname)
+    {
+        $this->lastname = $lastname;
+    }
+    public function set_password($password)
+    {
+        $this->password = $password;
+    }
+    public function set_email($email)
+    {
+        $this->email = $emai;
+    }
 
     public function registrate_new_access()
     {
