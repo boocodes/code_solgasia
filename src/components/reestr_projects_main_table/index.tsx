@@ -1,5 +1,6 @@
 import { useState } from "react";
 import styled from "styled-components";
+import TableContent from "./table_content";
 
 interface IProps
 {
@@ -12,10 +13,28 @@ interface IProps
 }
 
 
+export interface ITablesData
+{
+    path: string;
+    id: string;
+    created_at: string;
+    updated_at: string;
+    contributers: string;
+    author: string;
+    access_rights: string;
+    title: string;
+}
+
 
 function ReestrProjectsMainTable(props: IProps)
 {
- 
+    const [currentTableFileSelected, setCurrentTableFileSelected] = useState<string>("worker");
+    const [tablesData, setTablesData] = useState<ITablesData[]>([
+        {path: "test.xlsx", id: "1", created_at: "today", updated_at: "today", contributers: "me", author: "me", access_rights: "10", title: "text.xlsx"},
+        {path: "worker.xlsx", id: "2", created_at: "today", updated_at: "today", contributers: "me", author: "me", access_rights: "10", title: "worker"},
+        {path: "version.xlsx", id: "3", created_at: "today", updated_at: "today", contributers: "me", author: "me", access_rights: "10", title: "version.xlsx"},
+        {path: "copy1.xlsx", id: "4", created_at: "today", updated_at: "today", contributers: "me", author: "me", access_rights: "10", title: "copy"},
+    ]);
     return (
         <ExternalWrapper>
             <HeaderFiltersWrapper>
@@ -55,7 +74,9 @@ function ReestrProjectsMainTable(props: IProps)
                     <RightSideButtonElem>Документация</RightSideButtonElem>
                 </RightSideButtonsWrapper>
             </MainTableFiltersWrapper>
+            <TableContent setActiveTableTab={setCurrentTableFileSelected} tablesData={tablesData} currentTableFile={currentTableFileSelected}/>
         </ExternalWrapper>
+
     )
 }
 

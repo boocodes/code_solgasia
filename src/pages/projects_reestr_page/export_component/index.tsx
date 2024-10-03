@@ -60,7 +60,7 @@ const FileNameText = styled.p`
     font-weight: 300;
     font-size: 16px;
     margin-top: 10px;
-    color: #F27E3A;
+    color: #F27E3A; 
 `
 const TitleWrapper = styled.div`
     display: flex;
