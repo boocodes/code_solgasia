@@ -1,5 +1,5 @@
 import styled from "styled-components";
-import { getLastUrlPath, InDevelopmentPage, MainPage, PortalManageBlock } from './'
+import { getLastUrlPath, InDevelopmentPage, MainPage, PortalManageBlock, WelcomePage } from './'
 import { Navigate, Route, Routes } from "react-router-dom";
 import ProjectsReestr from "./pages/projects_reestr_page";
 
@@ -15,27 +15,31 @@ function App(props:Props) {
     <Routes>
     <Route
       path="/"
-      element={<Navigate to={"/main"}/>}
+      element={localStorage.getItem("user_auth") == "true" ? <Navigate to={"/main"}/> : <WelcomePage/>}
     />
     <Route
       path="/main"
-      element={<MainPage component={<InDevelopmentPage/>}/>}
+      element={localStorage.getItem("user_auth") == "true" ? <MainPage component={<InDevelopmentPage/>}/> : <Navigate to={"/"}/> }
     />
     <Route
       path="/reestr_project"
-      element={<ProjectsReestr/>}
+      element={localStorage.getItem("user_auth") == "true" ? <ProjectsReestr/> : <Navigate to={"/"}/>}
     />
     <Route
       path="/library"
-      element={<MainPage component={<InDevelopmentPage/>}/>}
+      element={localStorage.getItem("user_auth") == "true" ? <MainPage component={<InDevelopmentPage/>}/> : <Navigate to={"/"}/>}
     />
     <Route
       path="/monitoring"
-      element={<MainPage component={<InDevelopmentPage/>}/>}
+      element={localStorage.getItem("user_auth") == "true" ? <MainPage component={<InDevelopmentPage/>}/> : <Navigate to={"/"}/>}
     />
     <Route
       path="/portal_manage"
-      element={<MainPage component={<PortalManageBlock/>}/>}
+      element={localStorage.getItem("user_auth") == "true" ? <MainPage component={<PortalManageBlock/>}/> : <Navigate to={"/"}/>}
+    />
+    <Route
+      path="*"
+      element={<Navigate to={"/"}/>}
     />
   </Routes>
   )
