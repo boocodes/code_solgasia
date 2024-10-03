@@ -35,3 +35,8 @@ if(!empty($data["login"]) && !empty($data["password"]) && !empty($data["firstnam
         http_response_code(400);
     }
 }
+else
+{
+    echo json_encode(array("message"=>"Ошибка. Данные введены не полностью"), JSON_UNESCAPED_UNICODE);
+    http_response_code(400);
+}
