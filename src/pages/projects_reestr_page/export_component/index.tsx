@@ -16,7 +16,11 @@ function ExportComponent(props: IProps)
         <>
             <ExternalWrapper> 
                 <TitleWrapper>
-                    <TitleText >Экспорт проекта</TitleText>
+                    <TitleTextWrapper>
+                        <TitleText >Экспорт проекта</TitleText>
+                        <SubtitleText>Выгрузка выбранной таблицы</SubtitleText>
+                        <FileNameText>sheetspread1.xlsx</FileNameText>
+                    </TitleTextWrapper>
                     <CloseIconButtonWrapper>    
                         <CloseIconButton>
                             <CloseIcon onClick={()=>props.setExportModalFlag(false)} src="./images/close_icon.png"/>
@@ -45,11 +49,27 @@ const ExternalWrapper = styled.div`
 const TitleText = styled.p`
     font-weight: 500;
     font-size: 20px;
+    
+`
+const SubtitleText = styled.p`
+    font-weight: 300;
+    font-size: 16px;
+    margin-top: 10px;
+`
+const FileNameText = styled.p`
+    font-weight: 300;
+    font-size: 16px;
+    margin-top: 10px;
+    color: #F27E3A;
 `
 const TitleWrapper = styled.div`
     display: flex;
-    align-items: center;
+    align-items: flex-start;
     justify-content: space-between;
+`
+const TitleTextWrapper = styled.div`
+    display: flex;
+    flex-direction: column;
 `
 const ButtonsWrapper = styled.div`
     margin-top: 50px;

@@ -12,9 +12,10 @@ interface IProps
 }
 
 
+
 function ReestrProjectsMainTable(props: IProps)
 {
-    
+ 
     return (
         <ExternalWrapper>
             <HeaderFiltersWrapper>

@@ -1,6 +1,9 @@
 import { useState } from "react";
 import styled from "styled-components";
 import ImportProjectSub from "./import_project_sub";
+import AccessRightsSub from "./access_rights_sub";
+import PortalTrafficSub from "./portal_traffic_sub";
+import ExportLogsSub from "./export_logs_sub";
 
 
 
@@ -13,18 +16,32 @@ interface IProps{
 function PortalManageBlock(props:IProps)
 {
     const [importProjectModalFlag, setImportProjectModalFlag] = useState(false);
+    const [accessRightsModalFlag, setAccessRightsModalFlag] = useState(false);
+    const [portalTrafficModalFlag, setPortalTrafficModalFlag] = useState(false);
+    const [exportLogsModalFlag, setExportLogsModalFlag] = useState(false);
+
+    function offModalsFlags()
+    {
+        setImportProjectModalFlag(false);
+        setAccessRightsModalFlag(false);
+        setPortalTrafficModalFlag(false);
+        setExportLogsModalFlag(false);
+    }
+
     return(
         <ExternalWrapper>
-            <ModalsOverlay/>
             <InnerHeader>
                 <OfferText>Основные функции</OfferText>
             </InnerHeader>
             <ManageButtonsWrapper>
                 <ManageButton onClick={()=>setImportProjectModalFlag(true)}>Импортировать проект</ManageButton>
-                { importProjectModalFlag ? <ImportProjectSub setModalFlag={setImportProjectModalFlag}/> : null }
-                <ManageButton>Права доступа</ManageButton>
-                <ManageButton>Посещяемость портала</ManageButton>
-                <ManageButton>Эскпортировать логи</ManageButton>
+                    {importProjectModalFlag ? <ImportProjectSub setModalFlag={offModalsFlags}/> : null}
+                <ManageButton onClick={()=>setAccessRightsModalFlag(true)}>Права доступа</ManageButton>
+                    {accessRightsModalFlag ? <AccessRightsSub setModalFlag={offModalsFlags} /> : null}
+                <ManageButton onClick={()=>setPortalTrafficModalFlag(true)}>Посещяемость портала</ManageButton>
+                    {portalTrafficModalFlag ? <PortalTrafficSub setModalFlag={offModalsFlags}/> : null}
+                <ManageButton onClick={()=>setExportLogsModalFlag(true)}>Эскпортировать логи</ManageButton>
+                    {exportLogsModalFlag ? <ExportLogsSub setModalFlag={offModalsFlags}/> : null}
             </ManageButtonsWrapper>
         </ExternalWrapper>
     )

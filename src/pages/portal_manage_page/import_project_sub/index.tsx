@@ -2,29 +2,33 @@ import styled from "styled-components";
 
 interface IProps
 {
-    setModalFlag: (flag: boolean) => void;
+    setModalFlag: () => void;
 }
 
 function ImportProjectSub(props: IProps)
 {
     return (
+        <>
+        <ModalOverlay onClick={()=>props.setModalFlag()}/>
         <ExternalWrapper>
+            
             <HeaderWrapper>
                 <TitleWrapper>
                     <TitleText>Импорт проекта</TitleText>
                     <SubTitleText>Выберите файл или перенесите его сюда</SubTitleText>
                 </TitleWrapper>
                 <CloseIconButtonWrapper>
-                    <CloseIconButton>
+                    <CloseIconButton onClick={()=>props.setModalFlag()}>
                         <CloseIcon src="./images/close_icon.png"/>
                     </CloseIconButton>
                 </CloseIconButtonWrapper>
             </HeaderWrapper>
             <GetFileForm>
                 <SelectFileInputButton type={"file"}/>
-                
             </GetFileForm>
         </ExternalWrapper>
+        </>
+        
     )
 }
 
@@ -76,6 +80,16 @@ const SelectFileInputButton = styled.input`
 `
 const UploadFileInputButton = styled.input`
 
+`
+const ModalOverlay = styled.div`
+    position: fixed;
+    width: 100%;
+    height: 100%;
+    top: 0px;
+    left: 0px;
+    z-index: 4;
+    background-color: gray;
+    opacity: 0.5;
 `
 
 

@@ -54,7 +54,7 @@ function SearchPanelComponent(props:IProps)
             <SearchForm>
                 <SearchIcon src="./images/search_icon.png"/>
                 <SearchInput ref={searchInputRef} onFocus={getSearchResult} onChange={getSearchResult} placeholder="Поиск"/>
-                <SearchButton>Искать</SearchButton>
+                
             </SearchForm>
             {searchModelViewFlag ?
                 <>
