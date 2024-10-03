@@ -20,12 +20,12 @@ if(!empty($data["login"]) && !empty($data["password"]))
     
     if($user->login_user())
     {
-        echo json_encode(array("message"=>"Успешно"), JSON_UNESCAPED_UNICODE);
+        echo json_encode(array("message"=>"Успешно", "status"=>true), JSON_UNESCAPED_UNICODE);
         http_response_code(200);
     }
     else
     {
-        echo json_encode(array("message"=>"Неверный логин или пароль"), JSON_UNESCAPED_UNICODE);
+        echo json_encode(array("message"=>"Неверный логин или пароль", "status"=>false), JSON_UNESCAPED_UNICODE);
         http_response_code(400);
     }
     
