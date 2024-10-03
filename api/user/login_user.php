@@ -26,7 +26,7 @@ if(!empty($data["login"]) && !empty($data["password"]))
     else
     {
         echo json_encode(array("message"=>"Неверный логин или пароль"), JSON_UNESCAPED_UNICODE);
-        https_response_code(400);
+        http_response_code(400);
     }
     
 }
