@@ -18,11 +18,11 @@ $access_request->set_connection($db_connection);
 if(!empty($data["login"]) && !empty($data["password"]) && !empty($data["firstname"]) && !empty($data["middlename"]) && !empty($data["lastname"]) && !empty($data["email"]))
 {
     $access_request->set_login($data["login"]);
-    $access_request->set_login($data["password"]);
-    $access_request->set_login($data["firstname"]);
-    $access_request->set_login($data["middlename"]);
-    $access_request->set_login($data["lastname"]);
-    $access_request->set_login($data["email"]);
+    $access_request->set_password($data["password"]);
+    $access_request->set_firstname($data["firstname"]);
+    $access_request->set_middlename($data["middlename"]);
+    $access_request->set_lastname($data["lastname"]);
+    $access_request->set_email($data["email"]);
 
     if($access_request->registrate_new_access())
     {

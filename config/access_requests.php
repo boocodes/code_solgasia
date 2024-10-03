@@ -70,7 +70,7 @@ class AccessRequests
 
     public function registrate_new_access()
     {
-        $query = "INSERT INTO `" . $this->table_name . "` (`login`, `firstname`, `middlename`, `lastname`, `password`, `email`) VALUES ('" . $this->login . "', '" . $this->firstname . "', '" . $this->middlename . "', '" . $this->lastname . "', '" . $this->password . "', '" . $this->email . "');";
+        $query = "INSERT INTO `access_requests` (`login`, `firstname`, `middlename`, `lastname`, `password`, `email`, `id`, `created_at`) VALUES ('" . $this->login .  "', '" . $this->firstname . "', ' " . $this->middlename .  " ', '" . $this->lastname . "', '" . $this->password . "', '" . $this->email . "', NULL, CURRENT_TIMESTAMP);";
         $stmt = $this->connection->prepare($query);
         if($stmt->execute())
         {
