@@ -18,7 +18,7 @@ ReactDOM.render(
   document.getElementById('root')
 );
 
-
+export * from './ui'; 
 export * from './pages';
 export * from './utils';
 export * from './components';

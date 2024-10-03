@@ -1,0 +1,1 @@
+export {default as NotificationModalStatic} from './notification_modal_static';

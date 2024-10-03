@@ -1,4 +1,6 @@
+import { useState } from "react";
 import styled from "styled-components";
+import { NotificationModalStatic } from "../../../ui";
 
 
 interface IProps
@@ -9,23 +11,24 @@ interface IProps
 
 function ExportComponent(props: IProps)
 {
+    const [exportProcessingNotificationFlag, setExportProcessingNotificationFlag] = useState(false);
     return (
-        <ExternalWrapper>
-            <TitleWrapper>
-                <TitleText>Экспорт проекта</TitleText>
-                <CloseIconButtonWrapper>
-                    <CloseIconButton>
-                        <CloseIcon onClick={()=>props.setExportModalFlag(false)} src="./images/close_icon.png"/>
-                    </CloseIconButton>
-                </CloseIconButtonWrapper>
-            </TitleWrapper>
-            
-            <ButtonsWrapper>
-                <ButtonDownloadProject>Скачать файл</ButtonDownloadProject>
-                <ButtonCloseModal onClick={()=>props.setExportModalFlag(false)}>Закрыть окно</ButtonCloseModal>
-            </ButtonsWrapper>
-           
-        </ExternalWrapper>
+        <>
+            <ExternalWrapper> 
+                <TitleWrapper>
+                    <TitleText >Экспорт проекта</TitleText>
+                    <CloseIconButtonWrapper>    
+                        <CloseIconButton>
+                            <CloseIcon onClick={()=>props.setExportModalFlag(false)} src="./images/close_icon.png"/>
+                        </CloseIconButton>
+                    </CloseIconButtonWrapper>
+                </TitleWrapper>
+                <ButtonsWrapper>
+                    <ButtonDownloadProject>Скачать файл</ButtonDownloadProject>
+                    <ButtonCloseModal onClick={()=>props.setExportModalFlag(false)}>Закрыть окно</ButtonCloseModal>
+                </ButtonsWrapper>
+            </ExternalWrapper>   
+        </>
     )
 }
 

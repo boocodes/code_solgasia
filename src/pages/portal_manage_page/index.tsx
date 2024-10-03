@@ -1,4 +1,8 @@
+import { useState } from "react";
 import styled from "styled-components";
+import ImportProjectSub from "./import_project_sub";
+
+
 
 interface IProps{
 
@@ -8,13 +12,16 @@ interface IProps{
 
 function PortalManageBlock(props:IProps)
 {
+    const [importProjectModalFlag, setImportProjectModalFlag] = useState(false);
     return(
         <ExternalWrapper>
+            <ModalsOverlay/>
             <InnerHeader>
                 <OfferText>Основные функции</OfferText>
             </InnerHeader>
             <ManageButtonsWrapper>
-                <ManageButton>Импортировать проект</ManageButton>
+                <ManageButton onClick={()=>setImportProjectModalFlag(true)}>Импортировать проект</ManageButton>
+                { importProjectModalFlag ? <ImportProjectSub setModalFlag={setImportProjectModalFlag}/> : null }
                 <ManageButton>Права доступа</ManageButton>
                 <ManageButton>Посещяемость портала</ManageButton>
                 <ManageButton>Эскпортировать логи</ManageButton>
@@ -48,7 +55,14 @@ const ManageButton = styled.button`
     border-radius: 5px;
     cursor: pointer;
 `
-
-
+const ModalsOverlay = styled.div`
+    position: fixed;
+    width: 100%;
+    height: 100%;
+    top: 0px;
+    left: 0px;
+    background-color: gray;
+    opacity: 0.5;
+`
 
 export default PortalManageBlock;
