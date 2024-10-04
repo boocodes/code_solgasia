@@ -120,9 +120,13 @@ class User
         $stmt = $this->connection->prepare($query);
         $stmt->execute();
         $result = $stmt->fetch(PDO::FETCH_ASSOC);
-        if(!empty($result))
+        $result_array = array(
+            "id" => $result->id,
+        );
+        
+        if(!empty($result_array))
         {
-            return $result;
+            return $result_array;
         }
         else
         {
