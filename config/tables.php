@@ -10,7 +10,7 @@ class Tables
             $updated_at,
             $contributers,
             $author,
-            $title
+            $title,
             $access_rights;
         
     public function get_connection()
