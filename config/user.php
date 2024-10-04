@@ -129,7 +129,7 @@ class User
                 "lastname" => $row["lastname"],
                 "middlename" => $row["middlename"],
                 "email" => $row["email"],
-                "login" => $row["login"],
+                "login" => $row["login"]
             );
             return $result;
         }
