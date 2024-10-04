@@ -125,7 +125,7 @@ class User
         $stmt->execute();
 
         $result_data_count = $stmt->rowCount();
-        $row = $stmt->fetch(PDO::FETCH_ASSOC))
+        $row = $stmt->fetch(PDO::FETCH_ASSOC));
         $result = array(
             "id" => $row->id,
         );
