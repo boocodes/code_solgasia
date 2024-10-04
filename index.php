@@ -7,12 +7,12 @@ include_once "./config/database.php";
     if(!empty($db_connection))
     {
         echo "Сервер поднят. Подключение к базе данных успешно выполнено!" . "\n";
-        http_response_code(200);
+       
     }
     else
     {
         echo "Сервер работает, но подключение к базе данных не произошло!" . "\n";
-        http_response_code(200);
+ 
     }
     return;
 ?>
