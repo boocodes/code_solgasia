@@ -121,7 +121,15 @@ class User
         $stmt->execute();
         $result_data_count = $stmt->rowCount();
         $row = $stmt->fetch(PDO::FETCH_ASSOC);
-        return $row["id"];
+        if(!empty($row))
+        {
+            return $row["id"];
+        }
+        else
+        {
+            return "";
+        }
+       
     }
     
     public function registrate_user()
