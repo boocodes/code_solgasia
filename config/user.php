@@ -128,7 +128,7 @@ class User
         $row = $stmt->fetch(PDO::FETCH_ASSOC);
        
         $result = array(
-            "id" => $row->$id,
+            "id" => $row["id"],
         );
         
         return "true";
