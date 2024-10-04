@@ -20,7 +20,7 @@ if(!empty($data["login"]) && !empty($data["password"]))
     $result = $user->login_user();
     if(!empty($result))
     {
-        echo json_encode(array("id"=>$result, "status"=>true), JSON_UNESCAPED_UNICODE);
+        echo json_encode(array("data"=>$result, "status"=>true), JSON_UNESCAPED_UNICODE);
     }
     else
     {
