@@ -17,9 +17,9 @@ class Tables
     {
         return $this->connection;
     }
-    public function set_connection()
+    public function set_connection($connection)
     {
-        return $this->connection;
+        $this->connection = $connection;
     }
     public function get_title()
     {

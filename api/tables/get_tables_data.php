@@ -17,7 +17,7 @@ $tables->set_connection($db_connection);
 
 if(!empty($data["user_access_rights"]))
 {
-
+    
     $result = $tables->get_tables_data($data["user_access_rights"]);
     if(!empty($result))
     {
