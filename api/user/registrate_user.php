@@ -34,12 +34,12 @@ if
 
     if($user->registrate_user())
     {
-        echo json_encode(array("message"=>"Ok"));
-        http_response_code(200);
+        echo json_encode(array("status"=>true));
     }
     else
     {
-        echo json_encode(array("message"=>"Error"));
-        http_response_code(400);
+        echo json_encode(array("message"=>false));
     }
 }
+
+exit();

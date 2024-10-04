@@ -26,17 +26,16 @@ if(!empty($data["login"]) && !empty($data["password"]) && !empty($data["firstnam
 
     if($access_request->registrate_new_access())
     {
-        echo json_encode(array("message"=>"Успешно"), JSON_UNESCAPED_UNICODE);
-        http_response_code(200);
+        echo json_encode(array("status"=>true), JSON_UNESCAPED_UNICODE);
     }
     else
     {
-        echo json_encode(array("message"=>"Ошибка"), JSON_UNESCAPED_UNICODE);
-        http_response_code(400);
+        echo json_encode(array("status"=>false), JSON_UNESCAPED_UNICODE);
     }
 }
 else
 {
-    echo json_encode(array("message"=>"Ошибка. Данные введены не полностью"), JSON_UNESCAPED_UNICODE);
-    http_response_code(400);
+    echo json_encode(array("message"=>"Ошибка. Данные введены не полностью", "status"=>false), JSON_UNESCAPED_UNICODE);
 }
+
+exit();

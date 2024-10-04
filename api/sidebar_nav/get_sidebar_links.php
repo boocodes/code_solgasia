@@ -20,6 +20,7 @@ $result = $app_pages_links->get_all_sidebar_nav_links();
 
 if(!empty($result))
 {
-    echo json_encode(array("message"=>$result), JSON_UNESCAPED_UNICODE);
-    http_response_code(200);
+    echo json_encode(array("message"=>$result, "status"=>true), JSON_UNESCAPED_UNICODE);
 }
+
+exit();
