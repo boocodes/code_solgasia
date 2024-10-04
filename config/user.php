@@ -130,7 +130,7 @@ class User
             "id" => $row->id,
         );
         
-            
+        return $result;
         
 
         
