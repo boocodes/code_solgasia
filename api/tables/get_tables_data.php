@@ -21,13 +21,14 @@ if(!empty($data["user_access_rights"]))
     if(!empty($result))
     {
         echo json_encode(array("message"=>$result, "status"=>true), JSON_UNESCAPED_UNICODE);
-        http_response_code(200);
+        
     }
     else
     {
         echo json_encode(array("message"=>"Данные не найдены", "status"=>false), JSON_UNESCAPED_UNICODE);
-        http_response_code(400);
+
     }
+    http_response_code(200);
 }
 else
 {
