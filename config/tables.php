@@ -85,4 +85,38 @@ class Tables
     {
         $this->title = $title;
     }
+
+
+
+    public function get_tables_data($user_access_rights)
+    {
+        $query = "SELECT * FROM `" . $this->table_name . "` WHERE at_nav_bar_display = '1'";
+        $stmt = $this->connection->prepare($query);
+        $stmt->execute();
+
+
+        $result_data_count = $stmt->rowCount();
+        $result = array();
+        if($result_data_count > 0)
+        {
+            while($row = $stmt->fetch(PDO::FETCH_ASSOC))
+            {
+                extract($row);
+                $result_item = array(
+                    "path" => $path,
+                    "id" => $id,
+                    "created_at" => $created_at,
+                    "updated_at" => $updated_at,
+                    "contributers" => $contributers,
+                    "author" => $author,
+                    "access_rights" => $access_rights,
+                    "title" => $title 
+                );
+                array_push($result, $result_item);
+            }
+        }
+        return $result;
+    }
+
+
 }
