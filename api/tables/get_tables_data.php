@@ -31,6 +31,6 @@ if(!empty($data["user_access_rights"]))
 }
 else
 {
-    echo json_encode(array("message"=>"Ошибка, введите данные", "stats"=>false), JSON_UNESCAPED_UNICODE)
+    echo json_encode(array("message"=>"Ошибка, введите данные", "stats"=>false), JSON_UNESCAPED_UNICODE);
     http_response_code(400);
 }
