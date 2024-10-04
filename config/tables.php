@@ -110,7 +110,7 @@ class Tables
                     "contributers" => $contributers,
                     "author" => $author,
                     "access_rights" => $access_rights,
-                    "title" => $title 
+                    "title" => $title,
                 );
                 array_push($result, $result_item);
             }
