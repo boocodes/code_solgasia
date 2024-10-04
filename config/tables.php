@@ -90,7 +90,7 @@ class Tables
 
     public function get_tables_data($user_access_rights)
     {
-        $query = "SELECT * FROM `" . $this->table_name . "` WHERE access_rights >= ". $user_access_rights ." ";
+        $query = "SELECT * FROM `" . $this->table_name . "` WHERE access_rights >= ". int($user_access_rights) ." ";
         $stmt = $this->connection->prepare($query);
         $stmt->execute();
 
