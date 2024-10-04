@@ -17,8 +17,8 @@ if(!empty($data["login"]) && !empty($data["password"]))
 {
     $user->set_login($data["login"]);
     $user->set_password($data["password"]);
-    
-    if($user->login_user())
+    $result = $user->login_user();
+    if(!empty($result))
     {
         echo json_encode(array("message"=>"Успешно", "status"=>true), JSON_UNESCAPED_UNICODE);
     }
