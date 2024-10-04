@@ -121,14 +121,24 @@ class User
         $stmt->execute();
         $result_data_count = $stmt->rowCount();
         $row = $stmt->fetch(PDO::FETCH_ASSOC);
-        if(!empty($row))
+        $if(!empty($row))
         {
-            return $row["id"];
+            $result = array(
+                "id" => $row["id"],
+                "firstname" => $row["firstname"],
+                "lastname" => $row["lastname"],
+                "middlename" => $row["middlename"],
+                "email" => $row["email"],
+                "login" => $row["login"],
+            );
+            return $result;
         }
         else
         {
             return "";
         }
+        
+       
        
     }
     
