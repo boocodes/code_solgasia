@@ -116,22 +116,12 @@ class User
 
     public function login_user()
     {
-        
-
-
-        
         $query = "SELECT * FROM `" . $this->table_name . "` WHERE login = '" . $this->login . "' AND password = '" . $this->password . "';";
         $stmt = $this->connection->prepare($query);
         $stmt->execute();
-
         $result_data_count = $stmt->rowCount();
         $row = $stmt->fetch(PDO::FETCH_ASSOC);
-        
         return $row["id"];
-        
-
-        
-
     }
     
     public function registrate_user()
