@@ -35,3 +35,5 @@ else
     echo json_encode(array("message"=>"Error, please send data"));
     http_response_code(400);
 }
+
+exit();
