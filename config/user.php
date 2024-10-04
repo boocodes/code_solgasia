@@ -116,24 +116,26 @@ class User
 
     public function login_user()
     {
+        
+
+
+        
         $query = "SELECT * FROM `" . $this->table_name . "` WHERE login = '" . $this->login . "' AND password = '" . $this->password . "';";
         $stmt = $this->connection->prepare($query);
         $stmt->execute();
-        $result = $stmt->fetch(PDO::FETCH_ASSOC);
-        $result_array = array(
-            "id" => $result->id,
-        );
-        
-        if(!empty($result_array))
-        {
-            return $result_array;
-        }
-        else
-        {
-            return false;
-        }
+
+        $result_data_count = $stmt->rowCount();
+
+        $row = $stmt->fetch(PDO::FETCH_ASSOC)
+        extract($row);
+                $result = array(
+                    "id" => $id,
+                );
+       
+        return $result;
 
     }
+    
     public function registrate_user()
     {
         $query = "INSERT INTO `" . $this->table_name . "` (`firstname`, `middlename`, `lastname`, `user_photo`, `id`, `created_at`, `updated_at`, `password`, `login`, `email`) VALUES ('" . $this->firstname . "', '" . $this->middlename . "', '" . $this->lastname . "', 'user_profile_icon.png', NULL, CURRENT_TIMESTAMP, CURRENT_TIME(), '" . $this->password . "', '" . $this->login . "', '" . $this->email . "');";
