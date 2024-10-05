@@ -9,4 +9,4 @@ $files_path = "../../../tables/";
 $spreadsheet = $reader->load($files_path . "test.xlsx");
 $sheet = $spreadsheet->getSheet(0);
 
-echo json_encode($sheet->getCell("A1")->getValue());
+echo json_encode($sheet->getCell("A1")->getValue(), JSON_UNESCAPED_UNICODE);
