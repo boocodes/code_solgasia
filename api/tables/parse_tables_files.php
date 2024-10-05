@@ -11,4 +11,4 @@ $sheet = $spreadsheet->getSheet(0);
 $data = $sheet->toArray();
 
 
-echo json_encode($sheet, JSON_UNESCAPED_UNICODE);
+echo json_encode($data, JSON_UNESCAPED_UNICODE);
