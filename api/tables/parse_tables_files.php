@@ -7,8 +7,8 @@ use PhpOffice\PhpSpreadsheet\Writer\Xlsx;
 $reader = new \PhpOffice\PhpSpreadsheet\Reader\Xlsx();
 $files_path = "../../../tables/";
 $spreadsheet = $reader->load($files_path . "test.xlsx");
-$sheet = $spreadsheet->getSheet($spreadsheet->getFirstSheetIndex());
+$sheet = $spreadsheet->getSheet(0);
 $data = $sheet->toArray();
 
 
-echo json_encode($data, JSON_UNESCAPED_UNICODE);
+echo json_encode($sheet, JSON_UNESCAPED_UNICODE);
